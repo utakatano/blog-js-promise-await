@@ -27,3 +27,14 @@ placeOrder('blackCoffee').then((orderFromCustomer) => {
 }).catch((err) => {
   console.log(err)
 })
+
+placeOrder('blackTea').then((orderFromCustomer) => {
+  console.log('Request received')
+  if (typeof orderFromCustomer !== 'string') return
+  let orderProcessed = processOrder(orderFromCustomer)
+  return orderProcessed
+}).then((orderProcessed) => {
+  console.log(orderProcessed)
+}).catch((err) => {
+  console.log(err)
+})
