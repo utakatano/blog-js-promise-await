@@ -17,24 +17,40 @@ const processOrder = (order: string) => {
   })
 }
 
-placeOrder('blackCoffee').then((orderFromCustomer) => {
-  console.log('Request received')
-  if (typeof orderFromCustomer !== 'string') return
-  let orderProcessed = processOrder(orderFromCustomer)
-  return orderProcessed
-}).then((orderProcessed) => {
-  console.log(orderProcessed)
-}).catch((err) => {
-  console.log(err)
-})
+// placeOrder('blackCoffee').then((orderFromCustomer) => {
+//   console.log('Request received')
+//   if (typeof orderFromCustomer !== 'string') return
+//   let orderProcessed = processOrder(orderFromCustomer)
+//   return orderProcessed
+// }).then((orderProcessed) => {
+//   console.log(orderProcessed)
+// }).catch((err) => {
+//   console.log(err)
+// })
 
-placeOrder('blackTea').then((orderFromCustomer) => {
-  console.log('Request received')
-  if (typeof orderFromCustomer !== 'string') return
-  let orderProcessed = processOrder(orderFromCustomer)
-  return orderProcessed
-}).then((orderProcessed) => {
-  console.log(orderProcessed)
-}).catch((err) => {
-  console.log(err)
-})
+// placeOrder('blackTea').then((orderFromCustomer) => {
+//   console.log('Request received')
+//   if (typeof orderFromCustomer !== 'string') return
+//   let orderProcessed = processOrder(orderFromCustomer)
+//   return orderProcessed
+// }).then((orderProcessed) => {
+//   console.log(orderProcessed)
+// }).catch((err) => {
+//   console.log(err)
+// })
+
+// async-await
+const serveOrder = async () => {
+  try {
+    const orderReceived = await placeOrder('blackCoffee')
+    // const orderReceived = await placeOrder('blackTea')
+    console.log(orderReceived)
+    if (typeof orderReceived !== 'string') return
+    const processedOrder = await processOrder(orderReceived)
+    console.log(processedOrder)
+  } catch(error) {
+    console.log(error)
+  }
+}
+
+serveOrder()
